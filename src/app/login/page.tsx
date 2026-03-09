@@ -33,11 +33,12 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row bg-muted/30">
+        <div className="min-h-screen flex flex-col md:flex-row bg-background">
 
             {/* Left side / Branding container */}
-            <div className="hidden md:flex md:w-1/2 bg-background relative overflow-hidden flex-col items-center justify-center p-12 border-r">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
+            <div className="hidden md:flex md:w-1/2 relative overflow-hidden flex-col items-center justify-center p-12 border-r border-border/50 bg-muted/20">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/30 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
                 <div className="max-w-md w-full space-y-8 relative z-10 animate-in fade-in slide-in-from-left-8 duration-1000">
                     <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl tracking-tight mb-8 hover:opacity-80 transition-opacity">

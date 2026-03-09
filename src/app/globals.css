@@ -10,35 +10,6 @@
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 257 88% 58%; /* Striking vivid purple for modern saleshead aesthetic */
-  --primary-foreground: 0 0% 100%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 257 88% 58%;
-  --radius: 0.75rem;
-
-  --chart-1: 257 88% 58%;
-  --chart-2: 340 82% 52%;
-  --chart-3: 199 89% 48%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
-}
-
-.dark {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
@@ -51,19 +22,51 @@
   --secondary-foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 257 88% 68%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --ring: 257 88% 68%;
+  --radius: 0.75rem;
 
   --chart-1: 257 88% 68%;
   --chart-2: 340 82% 62%;
   --chart-3: 199 89% 58%;
   --chart-4: 43 74% 76%;
   --chart-5: 27 87% 77%;
+}
+
+.dark {
+  --background: 228 15% 5%;
+  /* Extremely dark slate/blue */
+  --foreground: 210 40% 98%;
+  --card: 228 15% 7%;
+  /* Slightly lighter than background */
+  --card-foreground: 210 40% 98%;
+  --popover: 228 15% 7%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 262 83% 58%;
+  /* SalesHead vivid purple */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 228 15% 12%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 228 15% 15%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 262 83% 58%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 345 83% 58%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 228 15% 14%;
+  --input: 228 15% 18%;
+  --ring: 262 83% 58%;
+
+  --chart-1: 262 83% 58%;
+  --chart-2: 210 100% 60%;
+  --chart-3: 150 100% 40%;
+  --chart-4: 43 100% 60%;
+  --chart-5: 330 100% 60%;
 }
 
 @theme inline {
@@ -101,6 +104,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

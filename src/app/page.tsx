@@ -21,35 +21,37 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <main className="flex-1 flex flex-col">
-        <section className="relative pt-24 pb-32 flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-          {/* Background Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <main className="flex-1 flex flex-col relative">
+        {/* SalesHead signature deep purple grid & glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/40 opacity-50 blur-[100px]"></div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-muted/50 backdrop-blur-sm text-sm font-medium mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+        <section className="relative pt-32 pb-32 flex flex-col items-center justify-center text-center px-4 overflow-hidden z-10">
+
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm text-sm font-medium mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 text-primary-foreground">
+            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_var(--color-primary)]"></span>
             HelixFlow AI Platform 2.0 is Live
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight max-w-4xl leading-tight mb-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight max-w-5xl leading-tight mb-8 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             The Operating System for <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-blue-500 drop-shadow-sm">
               Healthcare Administration
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 leading-relaxed">
             Eliminate administrative waste, predict claim denials before they happen, and auto-navigate payer policies using advanced multi-agent AI and knowledge graphs.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
+          <div className="flex flex-col sm:flex-row items-center gap-6 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
             <Link href="/login">
-              <Button size="lg" className="h-12 px-8 rounded-full text-base font-semibold shadow-xl shadow-primary/20 hover:scale-105 transition-all">
-                Access Platform Demo <ArrowRight className="ml-2 h-4 w-4" />
+              <Button size="lg" className="h-14 px-10 rounded-full text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_40px_-10px_var(--color-primary)] hover:shadow-[0_0_60px_-15px_var(--color-primary)] transition-all hover:scale-105 border border-primary/50">
+                Access Platform Demo <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/dashboard">
-              <Button size="lg" variant="outline" className="h-12 px-8 rounded-full text-base font-semibold bg-background/50 backdrop-blur-md hover:bg-muted">
+              <Button size="lg" variant="outline" className="h-14 px-10 rounded-full text-lg font-semibold bg-background/50 backdrop-blur-md hover:bg-muted border-muted-foreground/30 hover:border-muted-foreground/50 transition-all">
                 Explore Documentation
               </Button>
             </Link>
