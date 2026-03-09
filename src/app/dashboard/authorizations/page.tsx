@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Table,
     TableBody,
@@ -7,6 +9,7 @@ import {
     TableRow
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -26,7 +29,7 @@ export default function AuthorizationsPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Authorization Command Center</h1>
                     <p className="text-muted-foreground">Manage prior authorizations with AI-powered predictive insights.</p>
                 </div>
-                <Button>New Request</Button>
+                <Button onClick={() => toast.success("Action processed via HelixFlow AI.")}>New Request</Button>
             </div>
 
             <Card>
@@ -73,7 +76,7 @@ export default function AuthorizationsPage() {
                                         {auth.recommendation}
                                     </TableCell>
                                     <TableCell className="text-right">
-                                        <Button variant="outline" size="sm">Review</Button>
+                                        <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" size="sm">Review</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

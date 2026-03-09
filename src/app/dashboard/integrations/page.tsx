@@ -1,6 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -30,7 +31,7 @@ export default function IntegrationsPage() {
                         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input type="search" placeholder="Search integrations..." className="pl-8" />
                     </div>
-                    <Button>Add Custom API</Button>
+                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")}>Add Custom API</Button>
                 </div>
             </div>
 
@@ -75,7 +76,7 @@ export default function IntegrationsPage() {
                             )}
                         </CardContent>
                         <CardFooter className="pt-2 border-t bg-muted/20">
-                            <Button variant="ghost" size="sm" className="w-full justify-between">
+                            <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="ghost" size="sm" className="w-full justify-between">
                                 Settings <LinkIcon className="h-4 w-4" />
                             </Button>
                         </CardFooter>

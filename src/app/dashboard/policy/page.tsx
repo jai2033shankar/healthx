@@ -1,4 +1,7 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Search, Network, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -17,7 +20,7 @@ export default function PolicyExplorerPage() {
                         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input type="search" placeholder="Search CPT or Diagnosis..." className="pl-8" />
                     </div>
-                    <Button>Query Graph</Button>
+                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")}>Query Graph</Button>
                 </div>
             </div>
 
@@ -77,7 +80,7 @@ export default function PolicyExplorerPage() {
                                     Advanced imaging of the brain requires documentation of failed conservative therapy for a minimum of 6 weeks unless presenting with red flag symptoms (e.g., sudden onset severe headache, focal neurologic deficit).
                                 </div>
                             </div>
-                            <Button variant="outline" className="w-full">View Source Document</Button>
+                            <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" className="w-full">View Source Document</Button>
                         </CardContent>
                     </Card>
 

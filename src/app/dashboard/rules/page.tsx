@@ -1,6 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -14,7 +15,7 @@ export default function RulesEnginePage() {
                     <h1 className="text-3xl font-bold tracking-tight">Rules Engine (Low-Code)</h1>
                     <p className="text-muted-foreground">Define business logic and AI guardrails without writing code.</p>
                 </div>
-                <Button className="gap-2"><Plus className="h-4 w-4" /> New Rule</Button>
+                <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} className="gap-2"><Plus className="h-4 w-4" /> New Rule</Button>
             </div>
 
             <Card>
@@ -33,7 +34,7 @@ export default function RulesEnginePage() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Badge className="bg-green-500/10 text-green-500 hover:bg-green-500/20">Active</Badge>
-                                    <Button variant="ghost" size="icon"><Trash2 className="h-4 w-4 text-muted-foreground" /></Button>
+                                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="ghost" size="icon"><Trash2 className="h-4 w-4 text-muted-foreground" /></Button>
                                 </div>
                             </div>
 
@@ -75,7 +76,7 @@ export default function RulesEnginePage() {
                                         <SelectItem value="flag_review">Flag for Manual Review</SelectItem>
                                     </SelectContent>
                                 </Select>
-                                <Button variant="outline" size="sm" className="ml-auto"><Plus className="h-4 w-4 mr-1" /> Action</Button>
+                                <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" size="sm" className="ml-auto"><Plus className="h-4 w-4 mr-1" /> Action</Button>
                             </div>
                         </div>
 

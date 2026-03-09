@@ -1,6 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,7 @@ export default function DevelopersPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Developer Portal</h1>
                     <p className="text-muted-foreground">Manage API keys, Webhooks, and App Marketplace submissions.</p>
                 </div>
-                <Button className="gap-2"><Plus className="h-4 w-4" /> Create App</Button>
+                <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} className="gap-2"><Plus className="h-4 w-4" /> Create App</Button>
             </div>
 
             <Tabs defaultValue="api-keys" className="space-y-4">
@@ -43,8 +44,8 @@ export default function DevelopersPage() {
                                 </div>
                                 <div className="flex items-center gap-2 mt-2">
                                     <Input readOnly type="password" value="sk_live_1234567890abcdef" className="font-mono bg-background" />
-                                    <Button variant="outline" size="icon"><Copy className="h-4 w-4" /></Button>
-                                    <Button variant="destructive" size="sm">Revoke</Button>
+                                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" size="icon"><Copy className="h-4 w-4" /></Button>
+                                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="destructive" size="sm">Revoke</Button>
                                 </div>
                             </div>
                         </CardContent>
@@ -70,12 +71,12 @@ export default function DevelopersPage() {
                                         </div>
                                     </div>
                                     <div className="flex gap-2">
-                                        <Button variant="outline" size="sm">Test Payload</Button>
-                                        <Button variant="ghost" size="sm">Edit</Button>
+                                        <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" size="sm">Test Payload</Button>
+                                        <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="ghost" size="sm">Edit</Button>
                                     </div>
                                 </div>
                             </div>
-                            <Button variant="outline" className="w-full border-dashed"><Plus className="h-4 w-4 mr-2" /> Add Endpoint</Button>
+                            <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="outline" className="w-full border-dashed"><Plus className="h-4 w-4 mr-2" /> Add Endpoint</Button>
                         </CardContent>
                     </Card>
                 </TabsContent>
@@ -92,13 +93,13 @@ export default function DevelopersPage() {
                                     <div className="h-10 w-10 flex items-center justify-center rounded-md bg-blue-500/10 text-blue-500 font-bold">CD</div>
                                     <h3 className="font-semibold">Clinical Denial Recovery Agent</h3>
                                     <p className="text-xs text-muted-foreground flex-1">Auto-generates appeal letters using NLP by scanning patient discharge summaries.</p>
-                                    <Button variant="secondary" size="sm" className="mt-2 w-full">Install</Button>
+                                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="secondary" size="sm" className="mt-2 w-full">Install</Button>
                                 </div>
                                 <div className="border rounded-lg p-4 flex flex-col gap-2 hover:bg-muted/50 transition-colors cursor-pointer">
                                     <div className="h-10 w-10 flex items-center justify-center rounded-md bg-purple-500/10 text-purple-500 font-bold">SM</div>
                                     <h3 className="font-semibold">Smart Coding Mapper</h3>
                                     <p className="text-xs text-muted-foreground flex-1">Maps unstructured clinical notes to exact ICD-10 and CPT-4 codes automatically.</p>
-                                    <Button variant="secondary" size="sm" className="mt-2 w-full">Install</Button>
+                                    <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="secondary" size="sm" className="mt-2 w-full">Install</Button>
                                 </div>
                                 <div className="border rounded-lg border-dashed bg-muted/20 p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-muted/50 transition-colors min-h-[160px]">
                                     <Plus className="h-8 w-8 text-muted-foreground" />

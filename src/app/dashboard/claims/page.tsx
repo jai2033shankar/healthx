@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Table,
     TableBody,
@@ -7,6 +9,7 @@ import {
     TableRow
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertTriangle, CheckCircle, Clock } from "lucide-react";
@@ -26,7 +29,7 @@ export default function ClaimsPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Claims Intelligence</h1>
                     <p className="text-muted-foreground">Proactively identify and resolve high-risk claims before denial.</p>
                 </div>
-                <Button>Run Batch Analysis</Button>
+                <Button onClick={() => toast.success("Action processed via HelixFlow AI.")}>Run Batch Analysis</Button>
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
@@ -106,7 +109,7 @@ export default function ClaimsPage() {
                                         {claim.issue}
                                     </TableCell>
                                     <TableCell className="text-right">
-                                        <Button variant="secondary" size="sm">Fix Issue</Button>
+                                        <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} variant="secondary" size="sm">Fix Issue</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
