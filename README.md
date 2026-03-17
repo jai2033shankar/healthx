@@ -29,10 +29,10 @@ A unified financial view utilizing `Recharts` for dynamic data visualization. Tr
 An interactive mock interface into a **Neo4j Knowledge Graph**. It links Diagnosis Codes, Procedure Codes, and specific Payer Policies (e.g., BlueCross MRI conservative therapy rules) so coders accurately understand prerequisites visually.
 
 ### 🏥 Hospital Operations Twin
-A digital simulation of hospital flow leveraging ML predictive models and real-time EHR data. Monitors ED Wait Times, ICU Capacities, and OR Utilization, providing AI-driven operational recommendations (e.g., "Surge nursing capacity required in 2 hours").
+A digital simulation of hospital flow leveraging ML predictive models extrapolated from database history. Visually monitors ED Wait Times, ICU Capacities, and predicts surges up to 14 days in the future to aid in operational recommendations.
 
 ### 🤖 AI Copilot Console
-A conversational, natural language interface powered by a fine-tuned Healthcare LLM. Users can query medical guidelines, optimize coding combinations, or generate automated denial appeal letters based on EHR records.
+A conversational interface powered locally by **Ollama**. Users can query complex CPT coding scenarios, request guidelines directly from the knowledge graph context, or draft medical necessity appeals securely and privately on their local machine.
 
 ---
 
@@ -59,9 +59,10 @@ A dedicated area for creating robust, extensible healthcare applications.
 ## 🏗️ Architecture Stack
 
 - **Experience Layer**: Next.js 15 (App Router), React, TypeScript, Tailwind CSS, Shadcn UI, Recharts, Lucide Icons
-- **Data Layer (Schemas)**: PostgreSQL 15, Faker.js (Synthetic Seeding)
-- **API Layer**: Next.js Serverless Routes
-- **Deployment & Infra**: Docker Compose, GitHub Actions (Ready)
+- **Data Layer (Schemas)**: PostgreSQL 15, Faker.js (Synthetic Time-Series Seeding)
+- **API Layer**: Next.js Serverless Routes (`/api/predict`, `/api/chat`)
+- **AI/ML Integration**: Local Ollama (`llama3` model), Custom simulated ML regression APIs
+- **Deployment & Infra**: Docker Compose (Local DB), Git
 
 ### Database Schemas Included
 The repository contains robust SQL definitions for:
@@ -69,10 +70,9 @@ The repository contains robust SQL definitions for:
 
 ---
 
-## 🚦 Getting Started
-
 ### Prerequisites
-Make sure you have Node 18+ and Docker (to run the PostgreSQL database locally) installed.
+Make sure you have Node 18+ and Docker installed.
+To use the AI Copilot features, you must have [Ollama](https://ollama.com) installed and running locally.
 
 ### 1. Clone & Install
 ```bash
@@ -81,21 +81,27 @@ cd healthx
 npm install
 ```
 
-### 2. Database Setup & Synthetic Data Seeding
-Start the local PostgreSQL container and seed thousands of realistic FHIR-like records using Faker.js:
+### 2. Configure Local LLM (Ollama)
+Ensure your local Ollama instance is running and pull the `llama3` model:
 ```bash
-# Start Postgres via Docker Compose
+ollama run llama3
+```
+
+### 3. Database Setup & Synthetic Data Seeding
+Start the local PostgreSQL container and seed thousands of realistic time-series records suitable for ML forecasting:
+```bash
+# Start Postgres via Docker Compose (maps to port 5433)
 docker-compose up -d
 
-# Run the seeding script
+# Wait a few seconds for Postgres to initialize, then run the seeding script
 npx tsx scripts/seed_synthetic_data.ts
 ```
 
-### 3. Start Development Server
+### 4. Start Development Server
 ```bash
 npm run dev
 ```
-Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI.
+Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI. Explore the `Hospital Twin` and `Revenue Cycle` tabs for predictive modeling, and `AI Copilot` for native LLM chatting.
 
 ---
 
