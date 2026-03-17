@@ -1,5 +1,26 @@
 version: '3.8'
+
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - POSTGRES_USER=helixflow
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=helixflow_db
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      # For Mac local Ollama, use host.docker.internal. If using the ollama container below, use http://ollama:11434
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=llama3
+    depends_on:
+      - db
+    networks:
+      - helixnet
+
   db:
     image: postgres:15
     environment:
@@ -11,5 +32,24 @@ services:
     volumes:
       - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - helixnet
+
+  # Optional: Local Ollama container (Note: runs on CPU without GPU passthrough on Mac)
+  # Uncomment to run Ollama entirely within Docker, and change the app OLLAMA_URL to http://ollama:11434
+  # ollama:
+  #   image: ollama/ollama
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   networks:
+  #     - helixnet
+
+networks:
+  helixnet:
+    driver: bridge
+
 volumes:
   postgres_data:
+  ollama_data:

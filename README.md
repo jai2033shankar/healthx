@@ -58,11 +58,45 @@ A dedicated area for creating robust, extensible healthcare applications.
 
 ## 🏗️ Architecture Stack
 
-- **Experience Layer**: Next.js 15 (App Router), React, TypeScript, Tailwind CSS, Shadcn UI, Recharts, Lucide Icons
-- **Data Layer (Schemas)**: PostgreSQL 15, Faker.js (Synthetic Time-Series Seeding)
+- **Experience Layer**: Next.js 16 (App Router), React, TypeScript, Tailwind CSS, Shadcn UI, Recharts, Lucide Icons
+- **Data Layer**: PostgreSQL 15, Faker.js (Synthetic Time-Series Seeding)
 - **API Layer**: Next.js Serverless Routes (`/api/predict`, `/api/chat`)
-- **AI/ML Integration**: Local Ollama (`llama3` model), Custom simulated ML regression APIs
-- **Deployment & Infra**: Docker Compose (Local DB), Git
+- **AI/ML Integration**: Local Ollama (`llama3` model) & local simulated ML regression APIs
+- **Containerization**: Docker & Docker Compose
+
+### System Architecture Diagram
+```mermaid
+graph TD
+    subgraph Client [Client-Side Client]
+        UI[Next.js React UI]
+        Themes[Tailwind CSS & Veltris Theme]
+        Charts[Recharts Visualizations]
+    end
+
+    subgraph API [Next.js App Server]
+        R1[/api/chat/]
+        R2[/api/predict/]
+        R3[/api/claims/]
+    end
+
+    subgraph Data [Data Stores]
+        DB[(PostgreSQL 15)]
+    end
+
+    subgraph AI [AI Engines]
+        Ollama((Local Ollama LLM))
+        SimML((ML Forecasting Module))
+    end
+
+    UI -->|Next Navigation| API
+    UI --> Themes
+    UI --> Charts
+
+    R1 -->|HTTP POST| Ollama
+    R2 -->|SQL Query| DB
+    R2 -->|Extrapolation| SimML
+    R3 -->|CRUD SQL| DB
+```
 
 ### Database Schemas Included
 The repository contains robust SQL definitions for:
@@ -71,37 +105,37 @@ The repository contains robust SQL definitions for:
 ---
 
 ### Prerequisites
-Make sure you have Node 18+ and Docker installed.
-To use the AI Copilot features, you must have [Ollama](https://ollama.com) installed and running locally.
+- [Docker](https://docs.docker.com/get-docker/) & Docker Compose installed.
+- (Optional) Local [Ollama](https://ollama.com) installed if running the LLM natively on a Mac GPU instead of within Docker.
 
-### 1. Clone & Install
+### 1. Clone & Setup
 ```bash
 git clone https://github.com/jai2033shankar/healthx.git
 cd healthx
-npm install
 ```
 
-### 2. Configure Local LLM (Ollama)
-Ensure your local Ollama instance is running and pull the `llama3` model:
+### 2. Full Architecture Docker Run (One-Click)
+We have containerized the entire Next.js Application and PostgreSQL database into a single `docker-compose` footprint.
+
+Simply run:
 ```bash
-ollama run llama3
+docker-compose up --build -d
 ```
+*This will:*
+1. Build the Next.js `standalone` production server.
+2. Spin up a PostgreSQL 15 container mapped to port `5433`.
+3. Auto-initialize the `/db/schema.sql` database tables.
+4. Expose the web application on port `3000`.
 
-### 3. Database Setup & Synthetic Data Seeding
-Start the local PostgreSQL container and seed thousands of realistic time-series records suitable for ML forecasting:
+### 3. Seed the Database
+To view the AI projections, generate synthetic hospital data:
 ```bash
-# Start Postgres via Docker Compose (maps to port 5433)
-docker-compose up -d
-
-# Wait a few seconds for Postgres to initialize, then run the seeding script
+npm install # if not installed locally
 npx tsx scripts/seed_synthetic_data.ts
 ```
 
-### 4. Start Development Server
-```bash
-npm run dev
-```
-Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI. Explore the `Hospital Twin` and `Revenue Cycle` tabs for predictive modeling, and `AI Copilot` for native LLM chatting.
+### 4. Access the Application
+Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI. Explore the `Hospital Twin` and `Revenue Cycle` tabs for predictive modeling.
 
 ### 5. Run the End-to-End Demo
 To present this application showcasing the integrations to a wider audience, follow the highly detailed **[End-to-End Demo Script](./demo_script.md)**.
