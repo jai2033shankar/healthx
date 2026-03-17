@@ -69,7 +69,7 @@ A dedicated area for creating robust, extensible healthcare applications.
 graph TD
     subgraph Client [Client-Side Client]
         UI[Next.js React UI]
-        Themes[Tailwind CSS & Veltris Theme]
+        Themes[Tailwind CSS & Custom Theme]
         Charts[Recharts Visualizations]
     end
 
