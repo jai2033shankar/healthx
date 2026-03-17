@@ -21,8 +21,8 @@ export default function HospitalTwinPage() {
         fetch('/api/predict?type=hospital-twin')
             .then(res => res.json())
             .then(json => {
-                setData(json.data);
-                setRecommendation(json.recommendation);
+                setData(json.data || []);
+                setRecommendation(json.recommendation || "");
                 setLoading(false);
             })
             .catch(err => {
@@ -31,7 +31,7 @@ export default function HospitalTwinPage() {
             });
     }, []);
 
-    const hasSurge = data.some(d => d.surgeRisk);
+    const hasSurge = (data || []).some(d => d.surgeRisk);
 
     return (
         <div className="flex flex-col gap-6 animate-in fade-in-50 duration-500">

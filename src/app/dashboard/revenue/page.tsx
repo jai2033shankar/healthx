@@ -21,7 +21,7 @@ export default function RevenueCyclePage() {
         fetch('/api/predict?type=revenue')
             .then(res => res.json())
             .then(json => {
-                setData(json.data);
+                setData(json.data || []);
                 setLoading(false);
             })
             .catch(err => {
@@ -30,7 +30,7 @@ export default function RevenueCyclePage() {
             });
     }, []);
 
-    const totalLeakagePrevented = data.filter(d => d.type === 'historical').reduce((sum, d) => sum + d.leakageDetected, 0);
+    const totalLeakagePrevented = (data || []).filter(d => d.type === 'historical').reduce((sum, d) => sum + d.leakageDetected, 0);
 
     return (
         <div className="flex flex-col gap-6 animate-in fade-in-50 duration-500">
