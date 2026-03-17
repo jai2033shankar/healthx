@@ -3,7 +3,7 @@
 import { UserCircle, Search, Bell, Settings, LogOut, ShieldAlert, HeartPulse, FileText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -42,7 +42,6 @@ export function Header() {
                 </form>
             </div>
             <div className="flex items-center gap-4">
-                <ThemeToggle />
                 <Button variant="outline" size="icon" className="h-8 w-8 rounded-full" onClick={() => toast.success("No new notifications")}>
                     <Bell className="h-4 w-4" />
                     <span className="sr-only">Toggle notifications</span>
