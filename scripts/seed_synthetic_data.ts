@@ -58,9 +58,10 @@ async function seed() {
     const procedures = ['99213', '99214', '70450', '73221', '80053'];
     const diagnoses = ['J01.90', 'E11.9', 'I10', 'M54.5', 'R07.9'];
     for (let i = 0; i < 50; i++) {
+        const createdAt = faker.date.recent({ days: 60 });
         await client.query(
-            `INSERT INTO prior_authorizations (patient_id, provider_id, payer_id, procedure_code, diagnosis_code, status, ai_approval_probability, ai_recommendation)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+            `INSERT INTO prior_authorizations (patient_id, provider_id, payer_id, procedure_code, diagnosis_code, status, ai_approval_probability, ai_recommendation, created_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
             [
                 faker.helpers.arrayElement(patientIds),
                 faker.helpers.arrayElement(userIds),
@@ -69,7 +70,8 @@ async function seed() {
                 faker.helpers.arrayElement(diagnoses),
                 faker.helpers.arrayElement(['pending', 'approved', 'denied']),
                 faker.number.float({ min: 0.1, max: 0.99, fractionDigits: 2 }),
-                faker.lorem.sentence()
+                faker.lorem.sentence(),
+                createdAt
             ]
         );
     }
@@ -78,30 +80,34 @@ async function seed() {
     // 5. Claims and Denials
     for (let i = 0; i < 200; i++) {
         const status = faker.helpers.arrayElement(['submitted', 'paid', 'denied']);
+        const createdAt = faker.date.recent({ days: 90 });
+        
         const res = await client.query(
-            `INSERT INTO claims (patient_id, provider_id, payer_id, total_amount, status, ai_confidence_score)
-       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+            `INSERT INTO claims (patient_id, provider_id, payer_id, total_amount, status, ai_confidence_score, created_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
             [
                 faker.helpers.arrayElement(patientIds),
                 faker.helpers.arrayElement(userIds),
                 faker.helpers.arrayElement(tenantIds),
                 faker.number.float({ min: 100, max: 10000, fractionDigits: 2 }),
                 status,
-                faker.number.float({ min: 0.4, max: 0.99, fractionDigits: 2 })
+                faker.number.float({ min: 0.4, max: 0.99, fractionDigits: 2 }),
+                createdAt
             ]
         );
         const claimId = res.rows[0].id;
 
         if (status === 'denied') {
             await client.query(
-                `INSERT INTO denials (claim_id, reason_code, description, ai_recovery_prediction, status)
-         VALUES ($1, $2, $3, $4, $5)`,
+                `INSERT INTO denials (claim_id, reason_code, description, ai_recovery_prediction, status, created_at)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
                 [
                     claimId,
                     faker.helpers.arrayElement(['PR-1', 'CO-4', 'CO-11', 'PR-16']),
                     faker.lorem.sentence(),
                     faker.number.float({ min: 0.1, max: 0.95, fractionDigits: 2 }),
-                    faker.helpers.arrayElement(['open', 'appealed', 'resolved'])
+                    faker.helpers.arrayElement(['open', 'appealed', 'resolved']),
+                    createdAt
                 ]
             );
         }

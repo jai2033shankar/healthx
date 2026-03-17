@@ -1,137 +1,131 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Bed, Stethoscope, ActivitySquare } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Activity, ThermometerSun, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, ReferenceLine } from "recharts";
+
+interface TwinData {
+    hour: string;
+    predictedWaitTime: number;
+    predictedIcuCapacity: number;
+    surgeRisk: boolean;
+}
 
 export default function HospitalTwinPage() {
+    const [data, setData] = useState<TwinData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [recommendation, setRecommendation] = useState("");
+
+    useEffect(() => {
+        fetch('/api/predict?type=hospital-twin')
+            .then(res => res.json())
+            .then(json => {
+                setData(json.data);
+                setRecommendation(json.recommendation);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, []);
+
+    const hasSurge = data.some(d => d.surgeRisk);
+
     return (
         <div className="flex flex-col gap-6 animate-in fade-in-50 duration-500">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight">Hospital Operations Twin</h1>
-                <p className="text-muted-foreground">Digital twin simulation for resource utilization and capacity planning.</p>
+                <p className="text-muted-foreground">Real-time digital simulation and continuous forecasting of hospital flow.</p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card className="hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">ED Wait Time</CardTitle>
-                        <Users className="h-4 w-4 text-orange-500" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">42 mins</div>
-                        <p className="text-xs text-muted-foreground">Predicted to rise in 2 hours</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">ICU Capacity</CardTitle>
-                        <Bed className="h-4 w-4 text-red-500" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">92%</div>
-                        <p className="text-xs text-muted-foreground">2 beds remaining</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">OR Utilization</CardTitle>
-                        <Stethoscope className="h-4 w-4 text-green-500" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">78%</div>
-                        <p className="text-xs text-muted-foreground">Optimal efficiency</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Staffing Optimization</CardTitle>
-                        <ActivitySquare className="h-4 w-4 text-primary" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">1.2x</div>
-                        <p className="text-xs text-muted-foreground">Shift surge recommended</p>
-                    </CardContent>
-                </Card>
-            </div>
+            {loading ? (
+                <div className="flex justify-center p-12"><Activity className="animate-spin text-primary h-8 w-8" /></div>
+            ) : (
+                <>
+                    <div className="grid gap-4 md:grid-cols-3">
+                        <Card className="hover:shadow-md transition-shadow">
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">System Status</CardTitle>
+                                {hasSurge ? <AlertTriangle className="h-4 w-4 text-destructive" /> : <CheckCircle2 className="h-4 w-4 text-primary" />}
+                            </CardHeader>
+                            <CardContent>
+                                <div className={`text-2xl font-bold ${hasSurge ? 'text-destructive' : 'text-primary'}`}>
+                                    {hasSurge ? 'Surge Risk Detected' : 'Optimal Flow'}
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-1">AI predictive model active</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="hover:shadow-md transition-shadow md:col-span-2 bg-muted/40 backdrop-blur-sm border-primary/20">
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-sm font-medium flex items-center gap-2">
+                                    <ThermometerSun className="h-4 w-4 text-orange-500" />
+                                    AI Operational Recommendation
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-sm md:text-base font-medium">{recommendation}</p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Ward Capacity Prediction</CardTitle>
-                        <CardDescription>Simulated capacity over the next 24 hours.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                        <div className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="font-medium">Medical/Surgical</span>
-                                <span className="text-muted-foreground">85% full</span>
-                            </div>
-                            <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-                                <div className="h-full bg-blue-500 w-[85%]" />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="font-medium">Cardiology</span>
-                                <span className="text-muted-foreground">94% full</span>
-                            </div>
-                            <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-                                <div className="h-full bg-red-500 w-[94%]" />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="font-medium">Neurology</span>
-                                <span className="text-muted-foreground">62% full</span>
-                            </div>
-                            <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-                                <div className="h-full bg-green-500 w-[62%]" />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="font-medium">Pediatrics</span>
-                                <span className="text-muted-foreground">45% full</span>
-                            </div>
-                            <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-                                <div className="h-full bg-green-500 w-[45%]" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <Card className="hover:shadow-md transition-shadow">
+                            <CardHeader>
+                                <CardTitle>ED Wait Time Forecast (Next 24 Hrs)</CardTitle>
+                                <CardDescription>Simulated wait times using recent arrival velocity.</CardDescription>
+                            </CardHeader>
+                            <CardContent className="h-[300px]">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                        <defs>
+                                            <linearGradient id="colorWait" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
+                                                <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--muted-foreground)/0.2)" />
+                                        <XAxis dataKey="hour" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                                        <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}m`} />
+                                        <RechartsTooltip 
+                                            contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        />
+                                        <ReferenceLine y={60} stroke="hsl(var(--destructive))" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'Surge Threshold (60m)', fill: 'hsl(var(--destructive))', fontSize: 12 }} />
+                                        <Area type="monotone" dataKey="predictedWaitTime" name="Wait Time (mins)" stroke="hsl(var(--primary))" fillOpacity={1} fill="url(#colorWait)" />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                            </CardContent>
+                        </Card>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>AI Operational Recommendations</CardTitle>
-                        <CardDescription>Actionable insights from the simulation engine.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-4">
-                            <div className="flex items-start gap-4 p-3 rounded-lg border bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400">
-                                <ActivitySquare className="h-5 w-5 mt-0.5" />
-                                <div>
-                                    <h4 className="font-semibold text-sm">ICU Bottleneck Predicted</h4>
-                                    <p className="text-sm mt-1 opacity-90">Based on current OR scheduled cases and ED admission rates, ICU capacity will be exceeded by 14:00. Recommendation: Expedite 3 pending step-down transfers.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-4 p-3 rounded-lg border bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400">
-                                <Users className="h-5 w-5 mt-0.5" />
-                                <div>
-                                    <h4 className="font-semibold text-sm">ED Nursing Surge Required</h4>
-                                    <p className="text-sm mt-1 opacity-90">Inbound ambulance volume indicates a 40% surge in the next hour. Recommendation: Reallocate 2 float pool nurses to ED Triaging.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-4 p-3 rounded-lg border bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-400">
-                                <Bed className="h-5 w-5 mt-0.5" />
-                                <div>
-                                    <h4 className="font-semibold text-sm">Discharge Optimization</h4>
-                                    <p className="text-sm mt-1 opacity-90">12 patients are pending discharge orders. AI has pre-drafted summaries. Physician review can save 42 hours of bed availability.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+                        <Card className="hover:shadow-md transition-shadow">
+                            <CardHeader>
+                                <CardTitle>ICU Capacity Forecast (%)</CardTitle>
+                                <CardDescription>Predicted bed utilization based on current floor acuity.</CardDescription>
+                            </CardHeader>
+                            <CardContent className="h-[300px]">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                        <defs>
+                                            <linearGradient id="colorIcu" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="hsl(var(--orange-500))" stopOpacity={0.8}/>
+                                                <stop offset="95%" stopColor="hsl(var(--orange-500))" stopOpacity={0}/>
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--muted-foreground)/0.2)" />
+                                        <XAxis dataKey="hour" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                                        <YAxis domain={[0, 100]} stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
+                                        <RechartsTooltip 
+                                            contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        />
+                                        <Area type="monotone" dataKey="predictedIcuCapacity" name="ICU Cap (%)" stroke="hsl(var(--orange-500))" fillOpacity={1} fill="url(#colorIcu)" />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </>
+            )}
         </div>
     );
 }

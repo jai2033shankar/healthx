@@ -109,7 +109,7 @@ export default function LoginPage() {
                                     )}
                                 </Button>
                                 <div className="text-sm text-center text-muted-foreground w-full">
-                                    Don't have an enterprise account? <Link href="#" className="text-primary hover:underline font-medium">Contact Sales</Link>
+                                    Don&apos;t have an enterprise account? <Link href="#" className="text-primary hover:underline font-medium">Contact Sales</Link>
                                 </div>
                             </CardFooter>
                         </form>

@@ -13,21 +13,14 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 import { toast } from "sonner";
 import { useState } from "react";
 
 export function Header() {
-    const router = useRouter();
-    const [persona, setPersona] = useState("Hospital Administrator");
 
-    const handleLogout = () => {
-        toast.info("Logging out...");
-        setTimeout(() => {
-            router.push("/login");
-        }, 800);
-    };
+    const [persona, setPersona] = useState("Hospital Administrator");
 
     const switchPersona = (newPersona: string) => {
         setPersona(newPersona);

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
             event_id: "evt_123456789",
             received_payload: data
         });
-    } catch (err) {
+    } catch {
         return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
 }
