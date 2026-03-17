@@ -76,6 +76,11 @@ export function Header() {
                                 <FileText className="mr-2 h-4 w-4" />
                                 <span>Medical Biller</span>
                             </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => switchPersona("Sarah (VP of Revenue Cycle)")} className="cursor-pointer bg-primary/10 text-primary focus:bg-primary/20 focus:text-primary">
+                                <UserCircle className="mr-2 h-4 w-4" />
+                                <span>Demo: VP of Revenue Cycle</span>
+                            </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => toast.success("Settings opened.")} className="cursor-pointer">

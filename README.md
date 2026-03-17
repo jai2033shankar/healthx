@@ -103,6 +103,9 @@ npm run dev
 ```
 Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI. Explore the `Hospital Twin` and `Revenue Cycle` tabs for predictive modeling, and `AI Copilot` for native LLM chatting.
 
+### 5. Run the End-to-End Demo
+To present this application showcasing the integrations to a wider audience, follow the highly detailed **[End-to-End Demo Script](./demo_script.md)**.
+
 ---
 
 ## 🛡️ Security & Compliance
