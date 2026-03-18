@@ -17,9 +17,11 @@ import {
 import Link from "next/link";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
+    const router = useRouter();
     
     const [persona, setPersona] = useState("Hospital Administrator");
 
@@ -85,13 +87,16 @@ export function Header() {
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => toast.success("Settings opened.")} className="cursor-pointer">
+                        <DropdownMenuItem onClick={() => {
+                            toast.success("Navigating to Profile Settings");
+                            router.push("/dashboard/settings");
+                        }} className="cursor-pointer">
                             <Settings className="mr-2 h-4 w-4" />
                             <span>Settings</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => {
-                            e.preventDefault(); // allow radix to gracefully handle close
+                        <DropdownMenuItem onClick={(e) => {
+                            e.preventDefault(); 
                             toast.info("Logging out...");
                             setTimeout(() => {
                                 window.location.href = "/";
