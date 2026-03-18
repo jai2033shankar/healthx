@@ -133,6 +133,7 @@ To view the AI projections, generate synthetic hospital data:
 npm install # if not installed locally
 npx tsx scripts/seed_synthetic_data.ts
 ```
+*(Note: If you run into a database authentication error, you may have a conflicting docker volume from an older session. Fix this by running `docker-compose down -v` and repeating step 2).*
 
 ### 4. Access the Application
 Navigate to [http://localhost:3000](http://localhost:3000) to view HelixFlow AI. Explore the `Hospital Twin` and `Revenue Cycle` tabs for predictive modeling.
