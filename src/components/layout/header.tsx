@@ -18,6 +18,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
     const router = useRouter();
@@ -48,6 +49,8 @@ export function Header() {
                     <Bell className="h-4 w-4" />
                     <span className="sr-only">Toggle notifications</span>
                 </Button>
+
+                <ThemeToggle />
 
                 <DropdownMenu>
                     <DropdownMenuTrigger className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 h-8 w-8 rounded-full overflow-hidden">
