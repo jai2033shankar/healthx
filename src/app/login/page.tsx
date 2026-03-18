@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Bot, ArrowRight, ShieldCheck } from "lucide-react";
+import { Bot, ArrowRight, ShieldCheck, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,6 +30,24 @@ export default function LoginPage() {
         setTimeout(() => {
             router.push("/dashboard");
         }, 1500);
+    };
+
+    const handleGoogleLogin = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+
+        toast.promise(
+            new Promise((resolve) => setTimeout(resolve, 3000)),
+            {
+                loading: 'Awaiting Google MFA 2FA verification from your device...',
+                success: 'MFA Verified! Welcome to HelixFlow AI.',
+                error: 'MFA verification timed out.',
+            }
+        );
+
+        setTimeout(() => {
+            router.push("/dashboard");
+        }, 3000);
     };
 
     return (
@@ -72,11 +90,31 @@ export default function LoginPage() {
                         <CardHeader className="space-y-1 pb-6">
                             <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
                             <CardDescription>
-                                Use the pre-filled demo credentials to access the platform.
+                                Authenticate securely to access the interactive platform demo.
                             </CardDescription>
                         </CardHeader>
-                        <form onSubmit={handleLogin}>
-                            <CardContent className="space-y-4">
+                        <CardContent className="space-y-4">
+                            <Button 
+                                variant="outline" 
+                                className="w-full h-11 font-semibold flex items-center justify-center gap-2 hover:bg-muted" 
+                                onClick={handleGoogleLogin} 
+                                disabled={isLoading}
+                                type="button"
+                            >
+                                <Mail className="h-5 w-5 text-red-500" />
+                                Sign in with Google (MFA)
+                            </Button>
+                            
+                            <div className="relative my-4">
+                                <div className="absolute inset-0 flex items-center">
+                                    <span className="w-full border-t border-muted" />
+                                </div>
+                                <div className="relative flex justify-center text-xs uppercase">
+                                    <span className="bg-card px-2 text-muted-foreground">Or continue with email</span>
+                                </div>
+                            </div>
+                            
+                            <form onSubmit={handleLogin} className="space-y-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="email">Work Email</Label>
                                     <Input
@@ -101,18 +139,18 @@ export default function LoginPage() {
                                         className="h-11"
                                     />
                                 </div>
-                            </CardContent>
-                            <CardFooter className="flex flex-col gap-4 pt-4">
-                                <Button className="w-full h-11 text-base font-semibold shadow-md" type="submit" disabled={isLoading}>
+                                <Button className="w-full h-11 text-base font-semibold shadow-md mt-6" type="submit" disabled={isLoading}>
                                     {isLoading ? "Authenticating..." : (
                                         <>Sign in to Dashboard <ArrowRight className="ml-2 h-4 w-4" /></>
                                     )}
                                 </Button>
-                                <div className="text-sm text-center text-muted-foreground w-full">
-                                    Don&apos;t have an enterprise account? <Link href="#" className="text-primary hover:underline font-medium">Contact Sales</Link>
-                                </div>
-                            </CardFooter>
-                        </form>
+                            </form>
+                        </CardContent>
+                        <CardFooter className="flex flex-col gap-4 pt-4 border-t border-muted/30">
+                            <div className="text-sm text-center text-muted-foreground w-full py-2">
+                                Don&apos;t have an enterprise account? <Link href="#" className="text-primary hover:underline font-medium">Contact Sales</Link>
+                            </div>
+                        </CardFooter>
                     </Card>
                 </div>
             </div>

@@ -11,7 +11,7 @@ export default function DashboardOverview() {
                 <p className="text-muted-foreground">Monitor platform performance and AI intelligence.</p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-muted-foreground/20 bg-card/60 backdrop-blur-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Pending Authorizations</CardTitle>
                         <ShieldCheck className="h-4 w-4 text-primary" />
@@ -21,7 +21,7 @@ export default function DashboardOverview() {
                         <p className="text-xs text-muted-foreground">+20% from last month</p>
                     </CardContent>
                 </Card>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-muted-foreground/20 bg-card/60 backdrop-blur-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Claims Intelligence</CardTitle>
                         <FileText className="h-4 w-4 text-primary" />
@@ -31,7 +31,7 @@ export default function DashboardOverview() {
                         <p className="text-xs text-muted-foreground">84% approval probability</p>
                     </CardContent>
                 </Card>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-muted-foreground/20 bg-card/60 backdrop-blur-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Revenue Leakage Prevented</CardTitle>
                         <DollarSign className="h-4 w-4 text-primary" />
@@ -41,7 +41,7 @@ export default function DashboardOverview() {
                         <p className="text-xs text-muted-foreground">AI recovered in last 30 days</p>
                     </CardContent>
                 </Card>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-muted-foreground/20 bg-card/60 backdrop-blur-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">System Health</CardTitle>
                         <Activity className="h-4 w-4 text-primary" />

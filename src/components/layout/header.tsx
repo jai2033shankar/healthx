@@ -1,8 +1,10 @@
 "use client";
 
-import { UserCircle, Search, Bell, Settings, LogOut, ShieldAlert, HeartPulse, FileText } from "lucide-react";
+import { UserCircle, Search, Bell, Settings, LogOut, ShieldAlert, HeartPulse, FileText, Menu, Bot } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { navigation } from "@/components/layout/sidebar";
 
 import {
     DropdownMenu,
@@ -32,6 +34,36 @@ export function Header() {
 
     return (
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 backdrop-blur-xl">
+            <div className="md:hidden">
+                <Sheet>
+                    <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
+                        <Menu className="h-5 w-5" />
+                        <span className="sr-only">Toggle navigation menu</span>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-[280px] sm:w-[350px] p-0 flex flex-col pt-6">
+                        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                        <div className="px-6 pb-6">
+                            <Link href="/" className="flex items-center gap-2 font-semibold">
+                                <Bot className="h-6 w-6 text-primary shrink-0" />
+                                <span className="text-xl font-bold tracking-tight">HelixFlow<span className="text-primary">AI</span></span>
+                            </Link>
+                        </div>
+                        <nav className="grid items-start px-4 text-sm font-medium space-y-2">
+                            {navigation.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className="flex items-center gap-3 rounded-lg px-3 py-3 transition-all hover:text-primary hover:bg-muted text-muted-foreground font-medium"
+                                >
+                                    <item.icon className="h-4 w-4" />
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </nav>
+                    </SheetContent>
+                </Sheet>
+            </div>
+            
             <div className="w-full flex-1">
                 <form onSubmit={(e) => { e.preventDefault(); toast.success("Search executed."); }}>
                     <div className="relative">

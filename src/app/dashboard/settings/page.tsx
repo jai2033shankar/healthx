@@ -89,12 +89,21 @@ export default function SettingsPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between rounded-lg border p-4">
-                                <div className="space-y-0.5">
-                                    <Label className="text-base">MFA Authentication</Label>
-                                    <p className="text-sm text-muted-foreground">Required for HIPAA compliance.</p>
+                            <div className="flex flex-col gap-4 rounded-lg border p-4 bg-card/60 backdrop-blur-sm">
+                                <div className="flex items-center justify-between">
+                                    <div className="space-y-0.5">
+                                        <Label className="text-base">MFA Authentication</Label>
+                                        <p className="text-sm text-muted-foreground">Required for HIPAA compliance.</p>
+                                    </div>
+                                    <Badge variant="secondary" className="bg-green-500/10 text-green-600 dark:text-green-400">Enabled</Badge>
                                 </div>
-                                <Badge variant="secondary" className="bg-green-500/10 text-green-600 dark:text-green-400">Enabled</Badge>
+                                <div className="pt-2 border-t flex items-center justify-between">
+                                    <div className="space-y-0.5">
+                                        <Label className="text-sm font-medium">Google SSO Identity</Label>
+                                        <p className="text-xs text-muted-foreground">Connected to primary device authentication.</p>
+                                    </div>
+                                    <Button variant="outline" size="sm" className="h-8 text-xs font-semibold hover:bg-muted">Manage Access</Button>
+                                </div>
                             </div>
                             
                             <div className="pt-4 border-t">

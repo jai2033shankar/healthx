@@ -13,10 +13,15 @@ import {
     Bot,
     Blocks,
     Settings2,
-    Code2
+    Code2,
+    ChevronLeft,
+    ChevronRight
 } from "lucide-react";
+import { useState } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
-const navigation = [
+export const navigation = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Authorizations", href: "/dashboard/authorizations", icon: ShieldCheck },
     { name: "Claims Intelligence", href: "/dashboard/claims", icon: FileText },
@@ -31,35 +36,65 @@ const navigation = [
 
 export function Sidebar() {
     const pathname = usePathname();
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className="flex h-full w-64 flex-col border-r bg-muted/40 backdrop-blur-xl">
-            <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-                <Link href="/" className="flex items-center gap-2 font-semibold">
-                    <Bot className="h-6 w-6 text-primary" />
-                    <span className="text-xl font-bold tracking-tight">HelixFlow<span className="text-primary">AI</span></span>
+        <div className={cn("relative flex h-full flex-col border-r bg-muted/40 backdrop-blur-xl transition-all duration-300", isCollapsed ? "w-20" : "w-64")}>
+            <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setIsCollapsed(!isCollapsed)} 
+                className="absolute -right-4 top-5 h-8 w-8 rounded-full shadow-md z-50 flex items-center justify-center bg-background hover:bg-accent text-foreground"
+            >
+                {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+            </Button>
+            
+            <div className={cn("flex h-14 items-center border-b lg:h-[60px]", isCollapsed ? "justify-center px-0" : "px-4 lg:px-6")}>
+                <Link href="/" className={cn("flex items-center gap-2 font-semibold", isCollapsed && "justify-center")}>
+                    <Bot className="h-6 w-6 text-primary shrink-0" />
+                    {!isCollapsed && <span className="text-xl font-bold tracking-tight">HelixFlow<span className="text-primary">AI</span></span>}
                 </Link>
             </div>
-            <div className="flex-1 overflow-auto py-2">
-                <nav className="grid items-start px-2 text-sm font-medium lg:px-4 space-y-1">
-                    {navigation.map((item) => {
-                        const isActive = item.href === '/dashboard' 
-                            ? pathname === '/dashboard' 
-                            : pathname === item.href || pathname.startsWith(`${item.href}/`);
-                        return (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className={cn(
-                                    "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary",
-                                    isActive ? "bg-muted text-primary shadow-sm" : "text-muted-foreground"
-                                )}
-                            >
-                                <item.icon className="h-4 w-4" />
-                                {item.name}
-                            </Link>
-                        );
-                    })}
+            
+            <div className="flex-1 overflow-auto py-4">
+                <nav className="grid items-start px-2 text-sm font-medium lg:px-4 space-y-2">
+                    <TooltipProvider delay={0}>
+                        {navigation.map((item) => {
+                            const isActive = item.href === '/dashboard' 
+                                ? pathname === '/dashboard' 
+                                : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                            
+                            const linkContent = (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={cn(
+                                        "flex items-center rounded-lg px-3 py-2.5 transition-all hover:text-primary relative group",
+                                        isActive ? "bg-muted text-primary shadow-sm font-semibold" : "text-muted-foreground",
+                                        isCollapsed ? "justify-center w-full" : "gap-3"
+                                    )}
+                                >
+                                    <item.icon className={cn("shrink-0", isCollapsed ? "h-5 w-5" : "h-4 w-4")} />
+                                    {!isCollapsed && <span>{item.name}</span>}
+                                </Link>
+                            );
+
+                            if (isCollapsed) {
+                                return (
+                                    <Tooltip key={item.name}>
+                                        <TooltipTrigger className="flex w-full">
+                                            {linkContent}
+                                        </TooltipTrigger>
+                                        <TooltipContent side="right" className="font-medium">
+                                            {item.name}
+                                        </TooltipContent>
+                                    </Tooltip>
+                                );
+                            }
+
+                            return linkContent;
+                        })}
+                    </TooltipProvider>
                 </nav>
             </div>
         </div>
