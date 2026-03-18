@@ -89,9 +89,10 @@ export function Header() {
                             <span>Settings</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => {
+                        <DropdownMenuItem onSelect={(e) => {
+                            e.preventDefault(); // allow radix to gracefully handle close
                             toast.info("Logging out...");
-                            router.push("/login");
+                            setTimeout(() => router.push("/login"), 150);
                         }} className="cursor-pointer text-destructive focus:bg-destructive focus:text-destructive-foreground">
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Log out</span>
