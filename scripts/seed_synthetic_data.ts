@@ -2,7 +2,7 @@ import { Client } from 'pg';
 import { faker } from '@faker-js/faker';
 
 const client = new Client({
-    user: process.env.POSTGRES_USER || 'helixflow',
+    user: process.env.POSTGRES_USER || 'postgres',
     password: process.env.POSTGRES_PASSWORD || 'password',
     host: process.env.POSTGRES_HOST || 'localhost',
     database: process.env.POSTGRES_DB || 'helixflow_db',

@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - POSTGRES_USER=helixflow
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=helixflow_db
       - POSTGRES_HOST=db
@@ -24,7 +24,7 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: helixflow
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: helixflow_db
     ports:
