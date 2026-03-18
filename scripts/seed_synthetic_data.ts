@@ -6,7 +6,7 @@ const client = new Client({
     password: process.env.POSTGRES_PASSWORD || 'password',
     host: process.env.POSTGRES_HOST || 'localhost',
     database: process.env.POSTGRES_DB || 'helixflow_db',
-    port: parseInt(process.env.POSTGRES_PORT || '5432'),
+    port: parseInt(process.env.POSTGRES_PORT || '5433'),
 });
 
 async function seed() {
