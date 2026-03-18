@@ -38,7 +38,7 @@
 
 ### Scene 6: AI Copilot Console (Conversational Reasoning)
 1. **Navigate to:** Click **"AI Copilot"** in the left sidebar (`/dashboard/copilot`).
-2. **Action:** Show the chat interface. Note the "Model: Llama 3 (Local)" status in the header.
+2. **Action:** Show the chat interface. Note the "Model: Gemma 3 (Local)" status in the header.
 3. **Action:** Click the first suggested prompt: *"What is the clinical criteria for an MRI of the lumbar spine (CPT 72148)?"*
 4. **Action:** Let the local Ollama LLM stream the response.
 5. **Action:** Click the second prompt: *"Draft an appeal letter for denial reason 'CO-4'..."*

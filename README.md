@@ -61,7 +61,7 @@ A dedicated area for creating robust, extensible healthcare applications.
 - **Experience Layer**: Next.js 16 (App Router), React, TypeScript, Tailwind CSS, Shadcn UI, Recharts, Lucide Icons
 - **Data Layer**: PostgreSQL 15, Faker.js (Synthetic Time-Series Seeding)
 - **API Layer**: Next.js Serverless Routes (`/api/predict`, `/api/chat`)
-- **AI/ML Integration**: Local Ollama (`llama3` model) & local simulated ML regression APIs
+- **AI/ML Integration**: Local Ollama (`gemma3` model) & local simulated ML regression APIs
 - **Containerization**: Docker & Docker Compose
 
 ### System Architecture Diagram
