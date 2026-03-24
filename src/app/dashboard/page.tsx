@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, Plus, Users, Search, Mail, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AreaChart, Area, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { AreaChart, Area, ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const revenueData = [
   { name: 'Jan', value: 200 },
@@ -141,6 +141,11 @@ export default function DashboardOverview() {
                                         dot={{ r: 6, strokeWidth: 3, fill: '#0B0E14', stroke: '#8B5CF6' }}
                                         activeDot={{ r: 8, strokeWidth: 0, fill: '#8B5CF6' }}
                                     />
+                                    <Tooltip 
+                                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                        labelStyle={{ color: 'hsl(var(--foreground))' }}
+                                    />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -169,6 +174,10 @@ export default function DashboardOverview() {
                                             <Cell key={`cell-${index}`} fill={entry.color} />
                                         ))}
                                     </Pie>
+                                    <Tooltip 
+                                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                    />
                                 </PieChart>
                             </ResponsiveContainer>
                         </div>

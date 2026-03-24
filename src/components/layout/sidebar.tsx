@@ -39,7 +39,7 @@ export function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className={cn("relative flex h-full flex-col border-r border-border/50 bg-background transition-all duration-300", isCollapsed ? "w-20" : "w-64")}>
+        <div className={cn("relative flex h-full flex-col bg-background transition-all duration-300", isCollapsed ? "w-20" : "w-64")}>
             <Button 
                 variant="outline" 
                 size="icon" 
@@ -49,7 +49,7 @@ export function Sidebar() {
                 {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
             </Button>
             
-            <div className={cn("flex h-14 items-center border-b lg:h-[60px]", isCollapsed ? "justify-center px-0" : "px-4 lg:px-6")}>
+            <div className={cn("flex h-14 items-center lg:h-[60px]", isCollapsed ? "justify-center px-0" : "px-4 lg:px-6")}>
                 <Link href="/" className={cn("flex items-center gap-2 font-semibold", isCollapsed && "justify-center")}>
                     <Bot className="h-6 w-6 text-primary shrink-0" />
                     {!isCollapsed && <span className="text-xl font-bold tracking-tight">HelixFlow<span className="text-primary">AI</span></span>}

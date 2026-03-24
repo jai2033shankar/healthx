@@ -90,7 +90,7 @@ export default function CopilotPage() {
 
             <div className="flex flex-col md:flex-row gap-6 h-[calc(100vh-220px)] min-h-[500px]">
                 {/* Chat Area */}
-                <Card className="flex flex-col flex-1 shadow-md border-primary/20">
+                <Card className="flex flex-col flex-1 shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader className="border-b bg-muted/40 py-3">
                         <CardTitle className="flex items-center gap-2 text-base">
                             <Bot className="h-5 w-5 text-primary" />
@@ -173,7 +173,7 @@ export default function CopilotPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-primary/5 border-primary/20">
+                    <Card className="shadow-md hover:shadow-lg transition-all bg-primary/5 border-border/50 rounded-xl overflow-hidden">
                         <CardHeader className="py-3 px-4">
                             <CardTitle className="text-sm font-medium flex items-center gap-2">
                                 <AlertCircle className="h-4 w-4 text-primary" />

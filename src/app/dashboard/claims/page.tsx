@@ -33,7 +33,7 @@ export default function ClaimsPage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Clear for Submission</CardTitle>
                         <CheckCircle className="h-4 w-4 text-green-500" />
@@ -43,7 +43,7 @@ export default function ClaimsPage() {
                         <p className="text-xs text-muted-foreground">Low denial risk</p>
                     </CardContent>
                 </Card>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Pending Review</CardTitle>
                         <Clock className="h-4 w-4 text-yellow-500" />
@@ -53,7 +53,7 @@ export default function ClaimsPage() {
                         <p className="text-xs text-muted-foreground">Medium denial risk</p>
                     </CardContent>
                 </Card>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Action Required</CardTitle>
                         <AlertTriangle className="h-4 w-4 text-red-500" />

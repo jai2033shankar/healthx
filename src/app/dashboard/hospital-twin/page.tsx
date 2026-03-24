@@ -45,7 +45,7 @@ export default function HospitalTwinPage() {
             ) : (
                 <>
                     <div className="grid gap-4 md:grid-cols-3">
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-sm font-medium">System Status</CardTitle>
                                 {hasSurge ? <AlertTriangle className="h-4 w-4 text-destructive" /> : <CheckCircle2 className="h-4 w-4 text-primary" />}
@@ -57,7 +57,7 @@ export default function HospitalTwinPage() {
                                 <p className="text-xs text-muted-foreground mt-1">AI predictive model active</p>
                             </CardContent>
                         </Card>
-                        <Card className="hover:shadow-md transition-shadow md:col-span-2 bg-muted/40 backdrop-blur-sm border-primary/20">
+                        <Card className="shadow-md hover:shadow-lg transition-all md:col-span-2 bg-muted/40 backdrop-blur-sm border-border/50 rounded-xl overflow-hidden">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                                     <ThermometerSun className="h-4 w-4 text-orange-500" />
@@ -71,7 +71,7 @@ export default function HospitalTwinPage() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                             <CardHeader>
                                 <CardTitle>ED Wait Time Forecast (Next 24 Hrs)</CardTitle>
                                 <CardDescription>Simulated wait times using recent arrival velocity.</CardDescription>
@@ -89,7 +89,9 @@ export default function HospitalTwinPage() {
                                         <XAxis dataKey="hour" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
                                         <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}m`} />
                                         <RechartsTooltip 
-                                            contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                            contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                            itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                            labelStyle={{ color: 'hsl(var(--foreground))' }}
                                         />
                                         <ReferenceLine y={60} stroke="hsl(var(--destructive))" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'Surge Threshold (60m)', fill: 'hsl(var(--destructive))', fontSize: 12 }} />
                                         <Area type="monotone" dataKey="predictedWaitTime" name="Wait Time (mins)" stroke="hsl(var(--primary))" fillOpacity={1} fill="url(#colorWait)" />
@@ -98,7 +100,7 @@ export default function HospitalTwinPage() {
                             </CardContent>
                         </Card>
 
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                             <CardHeader>
                                 <CardTitle>ICU Capacity Forecast (%)</CardTitle>
                                 <CardDescription>Predicted bed utilization based on current floor acuity.</CardDescription>
@@ -116,7 +118,9 @@ export default function HospitalTwinPage() {
                                         <XAxis dataKey="hour" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
                                         <YAxis domain={[0, 100]} stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
                                         <RechartsTooltip 
-                                            contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                            contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                            itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                            labelStyle={{ color: 'hsl(var(--foreground))' }}
                                         />
                                         <Area type="monotone" dataKey="predictedIcuCapacity" name="ICU Cap (%)" stroke="hsl(var(--orange-500))" fillOpacity={1} fill="url(#colorIcu)" />
                                     </AreaChart>

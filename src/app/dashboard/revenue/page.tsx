@@ -44,7 +44,7 @@ export default function RevenueCyclePage() {
             ) : (
                 <>
                     <div className="grid gap-4 md:grid-cols-3">
-                        <Card className="hover:shadow-md transition-shadow bg-primary/5 border-primary/20">
+                        <Card className="shadow-md hover:shadow-lg transition-all bg-primary/5 border-border/50 rounded-xl overflow-hidden">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-sm font-medium">AI Prevented Leakage (30d)</CardTitle>
                                 <BrainCircuit className="h-4 w-4 text-primary" />
@@ -56,7 +56,7 @@ export default function RevenueCyclePage() {
                                 <p className="text-xs text-muted-foreground mt-1">Codes corrected before submission</p>
                             </CardContent>
                         </Card>
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-sm font-medium">First-Pass Yield</CardTitle>
                                 <TrendingUp className="h-4 w-4 text-green-500" />
@@ -66,7 +66,7 @@ export default function RevenueCyclePage() {
                                 <p className="text-xs text-muted-foreground mt-1">+3.1% since AI activation</p>
                             </CardContent>
                         </Card>
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-sm font-medium">A/R Days Remaining</CardTitle>
                                 <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -78,7 +78,7 @@ export default function RevenueCyclePage() {
                         </Card>
                     </div>
 
-                    <Card className="hover:shadow-md transition-shadow mt-4">
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden mt-4">
                         <CardHeader>
                             <CardTitle>Cash Flow & Extrapolated Forecast</CardTitle>
                             <CardDescription>Historical collections versus AI predictive forecast model.</CardDescription>
@@ -103,7 +103,9 @@ export default function RevenueCyclePage() {
                                         tickFormatter={(value) => `$${value/1000}k`} 
                                     />
                                     <RechartsTooltip 
-                                        contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                                        itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                        labelStyle={{ color: 'hsl(var(--foreground))' }}
                                         formatter={(value: unknown) => [`$${Number(value).toLocaleString(undefined, {maximumFractionDigits:0})}`]}
                                         labelFormatter={(label) => `Date: ${label}`}
                                     />

@@ -35,7 +35,7 @@ export default function SettingsPage() {
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {/* Profile Card */}
-                <Card className="col-span-2 shadow-lg shadow-primary/5 border-border/50">
+                <Card className="col-span-2 shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader>
                         <CardTitle className="text-xl flex items-center gap-2">
                             <UserCircle className="h-5 w-5 text-primary" /> Profile Information
@@ -79,7 +79,7 @@ export default function SettingsPage() {
 
                 {/* Security and Logout Card */}
                 <div className="space-y-6">
-                    <Card className="shadow-lg shadow-destructive/5 border-border/50">
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle className="text-xl flex items-center gap-2 text-destructive">
                                 <Shield className="h-5 w-5" /> Account Security

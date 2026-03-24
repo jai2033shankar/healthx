@@ -25,7 +25,7 @@ export default function PolicyExplorerPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
-                <Card className="md:col-span-2 flex flex-col min-h-[500px]">
+                <Card className="md:col-span-2 flex flex-col min-h-[500px] shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <Network className="h-5 w-5" /> Knowledge Graph Visualization
@@ -84,7 +84,7 @@ export default function PolicyExplorerPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="flex-1">
+                    <Card className="flex-1 shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>Related Concepts</CardTitle>
                         </CardHeader>
