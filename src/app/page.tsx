@@ -7,7 +7,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/30">
 
       {/* Header */}
-      <header className="px-6 h-16 flex items-center justify-between border-b bg-background/50 backdrop-blur-md sticky top-0 z-50">
+      <header className="px-6 h-16 flex items-center justify-between bg-background/50 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <Bot className="h-6 w-6 text-primary" />
           <span>HelixFlow<span className="text-primary">AI</span></span>
@@ -23,7 +23,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <main className="flex-1 flex flex-col relative">
         {/* Modern signature deep purple grid & glow */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+        {/* Gridlines removed */}
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/40 opacity-50 blur-[100px]"></div>
 
         <section className="relative pt-32 pb-32 flex flex-col items-center justify-center text-center px-4 overflow-hidden z-10">

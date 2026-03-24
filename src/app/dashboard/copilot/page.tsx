@@ -156,7 +156,7 @@ export default function CopilotPage() {
 
                 {/* Sidebar Info */}
                 <div className="w-full md:w-64 flex flex-col gap-4 hidden md:flex">
-                    <Card>
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader className="py-3 px-4">
                             <CardTitle className="text-sm font-medium">Suggested Prompts</CardTitle>
                         </CardHeader>

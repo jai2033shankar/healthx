@@ -27,7 +27,7 @@ export default function DevelopersPage() {
                 </TabsList>
 
                 <TabsContent value="api-keys" className="space-y-4">
-                    <Card>
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>Production API Keys</CardTitle>
                             <CardDescription>Use these keys to authenticate API requests to the HelixFlow AI platform.</CardDescription>
@@ -52,7 +52,7 @@ export default function DevelopersPage() {
                 </TabsContent>
 
                 <TabsContent value="webhooks" className="space-y-4">
-                    <Card>
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>Webhook Endpoints</CardTitle>
                             <CardDescription>Receive real-time HTTPS callbacks when events happen on HelixFlow AI.</CardDescription>
@@ -81,7 +81,7 @@ export default function DevelopersPage() {
                 </TabsContent>
 
                 <TabsContent value="marketplace" className="space-y-4">
-                    <Card>
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>App Directory</CardTitle>
                             <CardDescription>Discover or publish domain-focused agents to the HelixFlow Market.</CardDescription>

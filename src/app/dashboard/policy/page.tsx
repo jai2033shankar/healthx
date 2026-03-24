@@ -64,7 +64,7 @@ export default function PolicyExplorerPage() {
                 </Card>
 
                 <div className="flex flex-col gap-4">
-                    <Card>
+                    <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>Policy Extractor</CardTitle>
                             <CardDescription>AI interpreted rules for the active node</CardDescription>

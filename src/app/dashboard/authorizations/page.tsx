@@ -32,7 +32,7 @@ export default function AuthorizationsPage() {
                 <Button onClick={() => toast.success("Action processed via HelixFlow AI.")}>New Request</Button>
             </div>
 
-            <Card>
+            <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                 <CardHeader>
                     <CardTitle>Recent Requests</CardTitle>
                     <CardDescription>Review and action pending prior authorization requests.</CardDescription>

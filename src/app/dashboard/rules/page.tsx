@@ -18,7 +18,7 @@ export default function RulesEnginePage() {
                 <Button onClick={() => toast.success("Action processed via HelixFlow AI.")} className="gap-2"><Plus className="h-4 w-4" /> New Rule</Button>
             </div>
 
-            <Card>
+            <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                 <CardHeader>
                     <CardTitle>Active Logic Workflows</CardTitle>
                     <CardDescription>Rules currently overriding or informing AI decisions.</CardDescription>

@@ -65,7 +65,7 @@ export default function ClaimsPage() {
                 </Card>
             </div>
 
-            <Card>
+            <Card className="shadow-md hover:shadow-lg transition-all border-border/50 bg-card rounded-xl overflow-hidden">
                 <CardHeader>
                     <CardTitle>Claims at Risk</CardTitle>
                     <CardDescription>AI-identified claims requiring manual intervention prior to submission.</CardDescription>
