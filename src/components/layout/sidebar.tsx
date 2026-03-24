@@ -39,7 +39,7 @@ export function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className={cn("relative flex h-full flex-col border-r bg-muted/40 backdrop-blur-xl transition-all duration-300", isCollapsed ? "w-20" : "w-64")}>
+        <div className={cn("relative flex h-full flex-col border-r border-border/50 bg-background transition-all duration-300", isCollapsed ? "w-20" : "w-64")}>
             <Button 
                 variant="outline" 
                 size="icon" 
@@ -69,8 +69,8 @@ export function Sidebar() {
                                     key={item.name}
                                     href={item.href}
                                     className={cn(
-                                        "flex items-center rounded-lg px-3 py-2.5 transition-all hover:text-primary relative group",
-                                        isActive ? "bg-muted text-primary shadow-sm font-semibold" : "text-muted-foreground",
+                                        "flex items-center rounded-lg px-3 py-2.5 transition-all relative group",
+                                        isActive ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary rounded-l-none pl-2" : "text-muted-foreground hover:text-primary hover:bg-muted/30",
                                         isCollapsed ? "justify-center w-full" : "gap-3"
                                     )}
                                 >

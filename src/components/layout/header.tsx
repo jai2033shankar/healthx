@@ -33,7 +33,7 @@ export function Header() {
     };
 
     return (
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6 backdrop-blur-xl">
+        <header className="flex h-14 items-center gap-4 border-b border-border/50 bg-background/95 px-4 lg:h-[60px] lg:px-6 backdrop-blur-xl z-40 sticky top-0">
             <div className="md:hidden">
                 <Sheet>
                     <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
