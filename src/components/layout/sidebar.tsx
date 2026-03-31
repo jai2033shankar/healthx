@@ -15,7 +15,8 @@ import {
     Settings2,
     Code2,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    LineChart
 } from "lucide-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -23,9 +24,10 @@ import { Button } from "@/components/ui/button";
 
 export const navigation = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Unified RCM", href: "/dashboard/revenue", icon: DollarSign },
+    { name: "Propensity to Pay", href: "/dashboard/propensity", icon: LineChart },
     { name: "Authorizations", href: "/dashboard/authorizations", icon: ShieldCheck },
     { name: "Claims Intelligence", href: "/dashboard/claims", icon: FileText },
-    { name: "Revenue Cycle", href: "/dashboard/revenue", icon: DollarSign },
     { name: "Policy Explorer", href: "/dashboard/policy", icon: Network },
     { name: "Hospital Twin", href: "/dashboard/hospital-twin", icon: Building2 },
     { name: "AI Copilot", href: "/dashboard/copilot", icon: Bot },
